@@ -2,13 +2,13 @@
 
 Cisco Webex Board offers the possibility to share whiteboards by sending them via email or saving them into Webex spaces. To do this, users need to be standing in front of the board and perform several clicks on the screen. This Webex Device macro allows users to share whiteboards via email simply by clicking on a button on the navigator. It has been designed for Companion mode, but it could be easily used in other situations.
 
-
-
-
-
-
 ## Overview
 
+The macro is designed to run on the main Video device in the room. It automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (xapi.Command.Whiteboard.Email.Send) is only available when a whiteboard is shared during a call/meeting.
+
+
+
+REMOVE BELOW
 The macro automatically downloads a custom image from a configured URL upon startup. It then saves a UI Extension button to the Webex Devices using the downloaded image as the icon. Next, it subcribes to button clicks and text input events. When a user taps on the custom button, the macro opens a text input prompt and when the user enters their dial string information, the macro will match it against an array of regular expressions. The expressions are able to append the dial string, prefix the dial string or leave it unmodified. Once matched, the macro will place a call using the final dial string.
 
 Here is an example of the regular expressions and how they can modify the user entered dial string.
