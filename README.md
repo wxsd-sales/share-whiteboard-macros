@@ -8,7 +8,10 @@ The macro is designed to run on the main Video device in the room. It automatica
 
 
 
+
+
 REMOVE BELOW
+
 The macro automatically downloads a custom image from a configured URL upon startup. It then saves a UI Extension button to the Webex Devices using the downloaded image as the icon. Next, it subcribes to button clicks and text input events. When a user taps on the custom button, the macro opens a text input prompt and when the user enters their dial string information, the macro will match it against an array of regular expressions. The expressions are able to append the dial string, prefix the dial string or leave it unmodified. Once matched, the macro will place a call using the final dial string.
 
 Here is an example of the regular expressions and how they can modify the user entered dial string.
