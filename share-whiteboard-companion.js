@@ -23,7 +23,7 @@ const emailConfig = {
   subject: 'New white board' // Email suubject of your choice, this is an example
 };
 const buttonConfig = {
-  name: 'Send White Board',
+  name: 'Send whiteBoard',
   icon: 'Tv',
   panelId: 'share-wb'
 };
