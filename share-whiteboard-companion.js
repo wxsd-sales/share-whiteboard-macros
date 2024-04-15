@@ -63,7 +63,7 @@ function alert(message) {
 }
 
 function inform(message) {
-  xapi.Command.UserInterface.Message.Prompt.Display({ Duration: 5, Text: message, Title: 'Sharing Whiteboards' })
+  xapi.Command.UserInterface.Message.Prompt.Display({ Duration: 5, Text: message, Title: 'Sharing whiteboards' })
 }
 
 function sendWhiteBoardUrl(url) {
@@ -87,7 +87,7 @@ function sendWhiteBoardUrl(url) {
     .catch(error => console.log(error))
     .then(reponse => {
       console.log('putxml response status code:', reponse.StatusCode);
-      inform('White Board has been sent');
+      inform('Whiteboard has been sent');
     })
 }
 
@@ -105,7 +105,7 @@ function shareWhiteBoard(event) {
     .then(response => {
       boardUrl = response.Body.split("<BoardUrl>")[1].split("</BoardUrl>")[0];
       if (boardUrl == '') {
-        alert('You need to share a White Board before it can be sent');
+        alert('You need to share a whiteboard before it can be sent');
         return;
       }
       else {
