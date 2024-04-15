@@ -91,7 +91,7 @@ function sendWhiteBoardUrl(url) {
     })
 }
 
-async function shareWhiteBoard(event) {
+function shareWhiteBoard(event) {
   if (event.PanelId != buttonConfig.panelId) return;
   console.log(`Button ${buttonConfig.panelId} clicked`);
 
