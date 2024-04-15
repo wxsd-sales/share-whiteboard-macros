@@ -5,7 +5,8 @@ The macro is designed to run on the main Video device in the room. It automatica
 ## Setup
 ### Prerequisites & Dependencies:
 - RoomOS/CE Webex Device
-- Web admin access to the device to upload the macro
+- Web admin access to the device to upload and run the macro
+- The device running the macro needs to have connectivity with the Board where the whiteboard is being shared
 ### Installation Steps:
 1. Download the `share-whiteboard-companion.js` file and upload it to your Webex Room devices macro editor via the web interface.
 2. Configure the macro by changing the initial values, there are comments explaining each one.
