@@ -22,6 +22,7 @@ and another message confirming that the whiteboard was sent
 - RoomOS/CE Webex Device
 - Web admin access to the device to upload and run the macro
 - The device running the macro needs to have connectivity with the Board where the whiteboard is being shared
+- Board SMTP configuration is needed (see https://help.webex.com/en-us/article/nkgc99h/Configure-the-SMTP-settings-of-Cisco-Board-and-Desk-series)
 ### Installation Steps:
 1. Download the `share-whiteboard-companion.js` file and upload it to your Webex Room devices macro editor via the web interface.
 2. Configure the macro by changing the initial values, there are comments explaining each one.
