@@ -1,14 +1,16 @@
 # Share White Board (Companion Mode)
 Cisco Webex Board offers the possibility to share whiteboards by sending them via email or saving them into Webex spaces. To do this, users need to be standing in front of the board and perform several clicks on the screen. This Webex Device macro allows users to share whiteboards via email simply by clicking on a button on the navigator. It has been designed for Companion mode, but it could be easily used in other situations.
 
-![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/b3c5af78-b297-45ef-b738-575c6e16d22f)
+![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/20b7fe0f-c1a0-4c4a-95b8-cc03ce569180)
+
 
 
 ## Overview
 The macro is designed to run on the main Video device in the room. It automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
 
 The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
-![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/4ed34430-3353-4895-a2b3-77dd640a0fd3)
+![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/e17a09d6-e735-40d1-a217-015dff24a272)
+
 
 and another message confirming that the whiteboard was sent
 ![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/a77905e4-1b9d-4adc-a0a1-fe8bad5e94cc)
