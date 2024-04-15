@@ -15,4 +15,24 @@
  * 
  ********************************************************/
 
+import xapi from 'xapi';
+
+const emailConfig = {
+  destination: 'vvazquez@cisco.com',
+  body: 'Here you have your white board',
+  subject: 'New white board'
+};
+const buttonConfig = {
+  name: 'Send White Board',
+  icon: 'Tv',
+  panelId: 'share-wb'
+};
+
+const remoteDeviceconfig = {
+  deviceIP: '192.168.100.150',
+  userName: 'victor',
+  password: 'cisco,123',
+};
+
+
 
