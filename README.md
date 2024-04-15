@@ -6,6 +6,14 @@ Cisco Webex Board offers the possibility to share whiteboards by sending them vi
 
 ## Overview
 The macro is designed to run on the main Video device in the room. It automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
+
+The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
+![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/4ed34430-3353-4895-a2b3-77dd640a0fd3)
+
+and another message confirming that the whiteboard was sent
+![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/a77905e4-1b9d-4adc-a0a1-fe8bad5e94cc)
+
+
 ## Setup
 ### Prerequisites & Dependencies:
 - RoomOS/CE Webex Device
