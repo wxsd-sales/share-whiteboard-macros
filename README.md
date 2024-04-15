@@ -13,7 +13,8 @@ The device will send a warning message if the button to share the whiteboard is 
 
 
 and another message confirming that the whiteboard was sent
-![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/a77905e4-1b9d-4adc-a0a1-fe8bad5e94cc)
+![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/e6b74ba7-5f48-4b5b-bb05-7af4a14ccd59)
+
 
 
 ## Setup
