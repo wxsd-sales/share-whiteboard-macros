@@ -19,7 +19,7 @@ and another message confirming that the whiteboard was sent
 
 ## Setup
 ### Prerequisites & Dependencies:
-- RoomOS/CE Webex Device
+- RoomOS/CE Webex Device running RoomOS 11.14 version or above
 - Web admin access to the device to upload and run the macro
 - The device running the macro needs to have connectivity with the Board where the whiteboard is being shared
 - Board SMTP configuration is needed (see https://help.webex.com/en-us/article/nkgc99h/Configure-the-SMTP-settings-of-Cisco-Board-and-Desk-series)
