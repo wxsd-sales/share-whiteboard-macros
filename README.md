@@ -21,18 +21,17 @@ and another message confirming that the whiteboard was sent
 ### Prerequisites & Dependencies:
 - RoomOS/CE Webex Device running RoomOS 11.14 version or above
 - Web admin access to the device to upload and run the macro
-- The device running the macro needs to have connectivity with the Board where the whiteboard is being shared
+- Local Admin account for the Companion Board ( Required to make xAPI calls from main room device )
+- Network (LAN) connectivity between Main Room Device and Companion Board device
 - Board SMTP configuration is needed (see https://help.webex.com/en-us/article/nkgc99h/Configure-the-SMTP-settings-of-Cisco-Board-and-Desk-series)
 ### Installation Steps:
 1. Download the `share-whiteboard-companion.js` file and upload it to your Webex Room devices macro editor via the web interface.
 2. Configure the macro by changing the initial values, there are comments explaining each one.
 3. Enable the macro on the editor.
 ## Validated Hardware:
-
-* Webex Board Pro
-* Desk Pro
-
-This macro should work on other Webex Devices but has not been validated at this time.
+- Room Series & Navigator with Board Series in Companion mode
+- Board Series & Navigator
+- Desk Series & Navigator
 
 ## Demo
 
