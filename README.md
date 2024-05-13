@@ -4,6 +4,8 @@ Cisco Webex Board offers the possibility to share whiteboards by sending them vi
 ![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/20b7fe0f-c1a0-4c4a-95b8-cc03ce569180)
 
 ![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/633c23d0-3ac4-4c4c-b5fd-066e392613fa)
+<img width="1628" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/28d73258-2a3f-41ed-a8cc-498b876b915b">
+
 
 
 ## Overview
