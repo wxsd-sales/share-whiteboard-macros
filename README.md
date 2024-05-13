@@ -19,10 +19,14 @@ The macro is designed to run on the main Video device in the room. It automatica
 
 The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
 ![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/e17a09d6-e735-40d1-a217-015dff24a272)
+<img width="1590" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/f8fd1767-daea-4da5-9dc9-d34386024c2b">
+
 
 
 and another message confirming that the whiteboard was sent
 ![image](https://github.com/wxsd-sales/share-whiteboard/assets/22101144/e6b74ba7-5f48-4b5b-bb05-7af4a14ccd59)
+<img width="1609" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/6ce59940-cd9a-4baf-80c1-9892f13b1b39">
+
 
 
 
