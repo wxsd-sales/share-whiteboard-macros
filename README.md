@@ -1,10 +1,6 @@
 # Share Whiteboard Macro
 Cisco Webex Board, and Desk series, offer the possibility to share whiteboards by sending them via email or saving them into Webex spaces. To do this, users need to be standing in front of the board and perform several clicks on the screen. This Webex Device macro allows users to share whiteboards via email simply by clicking on a button on the navigator/touch screen. This is especially useful in Companion mode environments, where the Navigator is connected to the main video device.
 
-** REMOVE It has been designed for Companion mode, but it could be easily used in other situations. **
-
-
-
 ## Overview
 
 ### Features
@@ -27,7 +23,7 @@ Cisco Webex Board, and Desk series, offer the possibility to share whiteboards b
     ** ADD a new screenshot **
 
 ### Using the macro
-The macro is designed to run on the main Video device in the room. It automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
+The macro automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
 
 The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
 
@@ -43,10 +39,19 @@ and another message confirming that the whiteboard was sent
 - Local Admin account for the Companion Board ( Required to make xAPI calls from main room device )
 - Network (LAN) connectivity between Main Room Device and Companion Board device
 - Board SMTP configuration is needed (see https://help.webex.com/en-us/article/nkgc99h/Configure-the-SMTP-settings-of-Cisco-Board-and-Desk-series)
+
 ### Installation Steps:
-1. Download the `share-whiteboard-companion.js` file and upload it to your Webex Room devices macro editor via the web interface.
+
+For Companion mode, the macro is designed to run on the main video device in the room:
+1. Download the `share-whiteboard-companion.js` file and upload it to the main video device macro editor via the web interface
 2. Configure the macro by changing the initial values, there are comments explaining each one.
 3. Enable the macro on the editor.
+
+For standalone Boards, and Desks:
+1. Download the `standalone_file_change_name.js` file and upload it to your Webex Room devices macro editor via the web interface
+2. Configure the macro by changing the initial values, there are comments explaining each one
+3. Enable the macro on the editor
+
 ## Validated Hardware:
 - Room Series & Navigator with Board Series in Companion mode
 - Board Series & Navigator
