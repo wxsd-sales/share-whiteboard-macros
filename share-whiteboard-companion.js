@@ -1,53 +1,70 @@
+/********************************************************
+* 
+* Macro Author:  Victor Vazquez
+*                Technical Solutions Architect
+*                vvazquez@cisco.com
+*                Cisco Systems
+* 
+* Version: 1-0-0
+* Released: 12/04/24
+* 
+* This Webex Device macro allows users to share whiteboards
+* via email simply by clicking on a button on the Navigator. 
+*
+* This specific version of this macro has been designed for 
+* Companion mode use case. This macro should be installed and 
+* enabled on the main Room Device. The macro then lets a user
+* share a Whiteboard which may be open on the Companion Board
+* from the main Room Devices Navigator.
+* 
+* Full Readme and source code and license details available here:
+* https://github.com/wxsd-sales/share-whiteboard-macro
+* 
+********************************************************/
+
 import xapi from 'xapi';
 
+/*********************************************************
+ * Configure the settings below
+**********************************************************/
+
 const emailConfig = {
-  destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to
+  destination: 'vvazquez@cisco.com', // Change this value to the email address you want the whiteboard to be sent to
   body: 'Here you have your white board', // Email body text of your choice, this is an example
-  subject: 'New white board' // Email suubject of your choice, this is an example
+  subject: 'New white board', // Email subject of your choice, this is an example
+  attachmentFilename: 'myfile-companion-mode' // File name of your choice, this is an example
 };
 const buttonConfig = {
-  name: 'Send White Board',
+  name: 'Send whiteboard',
   icon: 'Tv',
   panelId: 'share-wb'
 };
 
 const remoteDeviceconfig = {
-  deviceIP: 'X.X.X.X', // Change this value to the Cisco Board IP adddress
-  userName: 'user', // Change this value to the Board user with Admin rights 
-  password: 'password', // Board user witrh Admin rights password
+  deviceIP: '192.168.100.150',
+  userName: 'victor',
+  password: 'cisco,123',
 };
 
 const credentials = btoa(`${remoteDeviceconfig.userName}:${remoteDeviceconfig.password}`);
 
-function createPanel() {
-  const panel = `
-    <Extensions>
-      <Version>1.11</Version>
-      <Panel>
-        <Order>1</Order>
-        <PanelId>wbButtonId</PanelId>
-        <Origin>local</Origin>
-        <Location>CallControls</Location>
-        <Icon>${buttonConfig.icon}</Icon>
-        <Name>${buttonConfig.name}</Name>
-        <ActivityType>Custom</ActivityType>
-      </Panel>
-    </Extensions>`
-  xapi.Command.UserInterface.Extensions.Panel.Save(
-    { PanelId: buttonConfig.panelId },
-    panel
-  )
-    .catch(e => console.log('Error saving panel: ' + e.message))
-}
+/*********************************************************
+ * Main functions and event subscriptions
+ **********************************************************/
 
-function alert(message) {
-  xapi.Command.UserInterface.Message.Alert.Display({ Duration: 10, Text: message, Title: 'Warning' });
-  console.log('Sending alert:', message);
-}
+// Set HTTP Client Config and listen for Panel Clicks
+xapi.Config.HttpClient.Mode.set('On');
+xapi.Config.HttpClient.AllowInsecureHTTPS.set('True');
+xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
 
-function inform(message) {
-  xapi.Command.UserInterface.Message.Prompt.Display({ Duration: 5, Text: message, Title: 'Sharing Whiteboards' })
-}
+// Create UI Extension Panel
+createPanel();
+
+
+/*********************************************************
+ * Instructs the Companion Device to send the Whitebard
+ * to configured email destination
+ **********************************************************/
 
 function sendWhiteBoardUrl(url) {
   const xml = ` <Command>
@@ -58,6 +75,7 @@ function sendWhiteBoardUrl(url) {
                         <Body>${emailConfig.body}</Body>
                         <Recipients>${emailConfig.destination}</Recipients>
                         <BoardUrls>${url}</BoardUrls>
+                        <AttachmentFilenames>${emailConfig.attachmentFilename}.pdf</AttachmentFilenames>
                       </Send>
                     </Email>
                   </Whiteboard>
@@ -67,45 +85,133 @@ function sendWhiteBoardUrl(url) {
     Header: ['Authorization: Basic ' + credentials],
     Url: `https://${remoteDeviceconfig.deviceIP}/putxml`
   }, xml)
-    .catch(error => console.log(error))
+    .catch(error => console.log('Error sending whiteboard', error))
     .then(reponse => {
       console.log('putxml response status code:', reponse.StatusCode);
-      inform('White Board has been sent');
+      alert({ message: `Whiteboard has been sent to ${emailConfig.destination}` });
     })
 }
 
-function shareWhiteBoard(event) {
-  if (event.PanelId != buttonConfig.panelId) return;
-  console.log(`Button ${buttonConfig.panelId} clicked`);
 
+/*********************************************************
+ * Listen for Panel Click Events and check Whiteboard xStatus
+ * of Companion Device before attempting to send the Whiteboard
+ **********************************************************/
+async function shareWhiteBoard(event) {
+  if (event.PanelId != buttonConfig.panelId) return;
+  
+  console.log(`Button ${buttonConfig.panelId} clicked`);
+  console.log('Checking Companion Board WhiteBoard status')
+  
+  alert({message: 'Checking for visible whiteboards on Companion Board', duration:5});
+  
   // Get Board URL from the WB
   let boardUrl = '';
-  xapi.Command.HttpClient.Get({
+  await xapi.Command.HttpClient.Get({
     AllowInsecureHTTPS: 'True',
     Header: ['Authorization: Basic ' + credentials],
     Url: `https://${remoteDeviceconfig.deviceIP}/getxml?location=/Status/Conference/Presentation/WhiteBoard`
   })
     .then(response => {
       boardUrl = response.Body.split("<BoardUrl>")[1].split("</BoardUrl>")[0];
-      if (boardUrl == '') {
-        alert('You need to share a White Board before it can be sent');
-        return;
-      }
-      else {
-        console.log('Board Url received from WB:', boardUrl);
-        alert ('Sending White Board');
-        sendWhiteBoardUrl(boardUrl); // Instruct Board to send URL
-      }    
+      console.log('Board Url read in WB', boardUrl);
+      if(!boardUrl){
+        alert({ title: 'Warning', message: 'You need to share a whiteboard before it can be sent' });
+        return
+  }
     })
     .catch(error => {
       console.log('Error getting Board URL;', error);
       console.log(boardUrl);
-    })  
+    })
+
+  if (boardUrl == '') {
+    alert('You need to share a White Board before it can be sent');
+    return;
+  }
+  else {
+    console.log('Instructing Webex Board to send whiteboard:', boardUrl);
+    sendWhiteBoardUrl(boardUrl); // Instruct Board to send URL
+  }
+}
+
+/**
+ * Alert Function for Logging & Displaying Notification on Device
+ * @property {object}  args               - Alert details
+ * @property {string}  args.message       - Message Text
+ * @property {string}  args.title         - Alert Title
+ * @property {number}  args.duration      - Alert Duration
+ */
+function alert(args) {
+
+  if (!args.hasOwnProperty('message')) {
+    console.error('message is required to display alert')
+    return
   }
 
-xapi.Config.HttpClient.Mode.set('On');
-xapi.Config.HttpClient.AllowInsecureHTTPS.set('True');
+  let duration = 5;
+  if(args.hasOwnProperty('duration')){
+    duration = args.duration;
+  }
 
-createPanel();
-xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
+  console.log('Displaying Alert:', args)
+  if (args.hasOwnProperty('title')) {
+    switch (args.title.toLowerCase()) {
+      case 'warning':
+        xapi.Command.UserInterface.Message.Alert.Display({ Duration: 10, Text: args.message, Title: args.title });
+        break;
+      default:
+        xapi.Command.UserInterface.Message.Prompt.Display({ Duration: duration, Text: args.message, Title: args.title });
+    }
+  } else {
+    xapi.Command.UserInterface.Message.Prompt.Display({ Duration: duration, Text: args.message, Title: 'Sharing Whiteboard Macro' })
+  }
+}
 
+
+/*********************************************************
+ * Create the UI Extension Panel and Save it to the Device
+ **********************************************************/
+async function createPanel() {
+  const panelId = buttonConfig.panelId;
+
+  let order = "";
+  const orderNum = await panelOrder(panelId);
+  if (orderNum != -1) order = `<Order>${orderNum}</Order>`;
+
+  const panel = `
+    <Extensions>
+      <Panel>
+        ${order}
+        <Origin>local</Origin>
+        <Location>CallControls</Location>
+        <Icon>${buttonConfig.icon}</Icon>
+        <Name>${buttonConfig.name}</Name>
+        <ActivityType>Custom</ActivityType>
+      </Panel>
+    </Extensions>`
+  xapi.Command.UserInterface.Extensions.Panel.Save(
+    { PanelId: panelId },
+    panel
+  )
+    .catch(e => console.log('Error saving panel: ' + e.message))
+}
+
+
+/*********************************************************
+ * Gets the current Panel Order if exiting Macro panel is present
+ * to preserve the order in relation to other custom UI Extensions
+ **********************************************************/
+async function panelOrder(panelId) {
+  const list = await xapi.Command.UserInterface.Extensions.List({
+    ActivityType: "Custom",
+  });
+  if (!list.hasOwnProperty("Extensions")) return -1;
+  if (!list.Extensions.hasOwnProperty("Panel")) return -1;
+  if (list.Extensions.Panel.length == 0) return -1;
+  for (let i = 0; i < list.Extensions.Panel.length; i++) {
+    if (list.Extensions.Panel[i].PanelId == panelId)
+      return list.Extensions.Panel[i].Order;
+  }
+  return -1;
+}
