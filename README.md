@@ -11,17 +11,20 @@ Cisco Webex Board, and Desk series, offer the possibility to share whiteboards b
 
 - Send Whiteboard from your touch screen
 
-Send your Desk/Board Whiteboards with a simple click
+  Send your Desk/Board Whiteboards with a simple click
+
 <img width="1628" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/28d73258-2a3f-41ed-a8cc-498b876b915b">
 
 - Send Whiteboard from you Navigator:
 
   Use your Navigator to send Whiteboards that are open on your paired Desk or Board Series Devices
 
-** ADD a new screenshot **
+  ** ADD a new screenshot **
 - Send Whiteboard in Companion Mode
 
-  Similar the above feature, we can also send Whiteboards opened on a companion Board Device from the main Room Series Device and its Navigator
+  Similar the above feature, we can also send Whiteboards opened on a Companion Board Device from the main Room Series Device and its Navigator
+
+    ** ADD a new screenshot **
 
 ### Using the macro
 The macro is designed to run on the main Video device in the room. It automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
