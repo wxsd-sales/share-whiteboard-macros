@@ -48,7 +48,7 @@ For Companion mode, the macro is designed to run on the main video device in the
 3. Enable the macro on the editor.
 
 For standalone Boards, and Desks:
-1. Download the `standalone_file_change_name.js` file and upload it to your Webex Room devices macro editor via the web interface
+1. Download the `share-whiteboard.js` file and upload it to your Webex Room devices macro editor via the web interface
 2. Configure the macro by changing the initial values, there are comments explaining each one
 3. Enable the macro on the editor
 
