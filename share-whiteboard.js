@@ -11,8 +11,11 @@
 * This Webex Device macro allows users to share whiteboards
 * via email simply by clicking on a button on the Navigator. 
 *
-* This specific version of the macro works for Webex Board
-* and desk series, with or without a Navigator
+* This specific version of this macro has been designed for 
+* Companion mode use case. This macro should be installed and 
+* enabled on the main Room Device. The macro then lets a user
+* share a Whiteboard which may be open on the Companion Board
+* from the main Room Devices Navigator.
 * 
 * Full Readme and source code and license details available here:
 * https://github.com/wxsd-sales/share-whiteboard-macro
