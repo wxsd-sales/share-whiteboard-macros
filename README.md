@@ -63,6 +63,12 @@ A new version of this macro is ready, allowing the user to send the Whiteboard t
 
 ** ADD screenshot **
 
+### Installation Steps:
+
+1. Download the `new-file-companion` file for Companion mode, or the `new-file-standalone` and upload it to the main video device macro editor via the web interface
+2. Configure the macro by changing the initial values, there are comments explaining each one.
+3. Enable the macro on the editor.
+
 ## Demo
 *For more demos & PoCs like this, check out our [Webex Labs site](https://collabtoolbox.cisco.com/webex-labs).
 
