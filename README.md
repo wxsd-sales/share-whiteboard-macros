@@ -38,12 +38,6 @@ and another message confirming that the whiteboard was sent
 - Board Series & Navigator
 - Desk Series & Navigator
 
-## New version: selecting participants
-### Overview
-A new version of this macro is ready, allowing the user to send the Whiteboard to a default email address or choose among from the list of meeting participants
-
-** ADD screenshot **
-
 ## Demo
 *For more demos & PoCs like this, check out our [Webex Labs site](https://collabtoolbox.cisco.com/webex-labs).
 
