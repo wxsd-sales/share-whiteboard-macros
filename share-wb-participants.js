@@ -1,3 +1,29 @@
+/********************************************************
+* 
+* Macro Author:  Victor Vazquez
+*                Technical Solutions Architect
+*                vvazquez@cisco.com
+*                Cisco Systems
+* 
+* Version: 1-0-0
+* Released: 20/06/24
+* 
+* This Webex Device macro allows users to share whiteboards
+* via email simply by clicking on a button on the Navigator. 
+*
+* This specific version of this macro has been designed for 
+* Companion mode use case. This macro should be installed and 
+* enabled on the main Room Device. The macro then lets a user
+* share a Whiteboard which may be open on the Companion Board
+* from the main Room Devices Navigator.
+*
+* User can now select 
+* 
+* Full Readme and source code and license details available here:
+* https://github.com/wxsd-sales/share-whiteboard-macro
+* 
+********************************************************/
+
 import xapi from 'xapi';
 
 let emailConfig = {
