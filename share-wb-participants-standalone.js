@@ -197,26 +197,6 @@ async function getWidgetState(widgetId) {
   return widget.Value
 }
 
-
-async function getBoardUrl() {
-  let boardUrl = '';
-  alert({ message: 'Checking for visible whiteboards on Companion Board', duration: 5 });
-  // Get Board URL from the WB
-  await xapi.Command.HttpClient.Get({
-    AllowInsecureHTTPS: 'True',
-    Header: ['Authorization: Basic ' + credentials],
-    Url: `https://${remoteDeviceconfig.deviceIP}/getxml?location=/Status/Conference/Presentation/WhiteBoard`
-  })
-    .then(response => {
-      boardUrl = response.Body.split("<BoardUrl>")[1].split("</BoardUrl>")[0];
-      console.log('Board Url read in WB', boardUrl);
-      return (boardUrl);
-    })
-    .catch(error => {
-      console.log('Error getting Board URL;', error);
-    })
-}
-
 /*********************************************************
  * Instructs the Companion Device to send the Whitebard
  * to configured email destination
@@ -244,7 +224,10 @@ async function sendWhiteBoardUrl(destination) {
   alert({ message: `Whiteboard has been sent to ${destination}` })
 }
 
-// This function creates the hidden main panel
+/*********************************************************
+ * Create the Share Whiteboard button
+**********************************************************/
+
 async function createPanel(people) {
 
   console.log('Creating Panel')
@@ -269,6 +252,10 @@ async function createPanel(people) {
   await xapi.Command.UserInterface.Extensions.Panel.Save({ PanelId: panelId }, panel)
     .catch(error => console.log(`Unable to save panel [${panelId}]- `, error.message))
 }
+
+/*********************************************************
+ * Create the main page
+**********************************************************/
 
 function createMainPage() {
   const panelId = config.panelId;
@@ -305,6 +292,10 @@ function createMainPage() {
       <Options>hideRowNames=1</Options>
     </Page>`
 }
+
+/*********************************************************
+ * Create the list of participants Panel
+**********************************************************/
 
 function createParticipantsPage(people) {
   const rows = people.map(person => {
