@@ -17,7 +17,8 @@
 * share a Whiteboard which may be open on the Companion Board
 * from the main Room Devices Navigator.
 *
-* User can now select 
+* The macro includes a new option allowing the user to send the 
+* Whiteboard to selected meeting participants
 * 
 * Full Readme and source code and license details available here:
 * https://github.com/wxsd-sales/share-whiteboard-macro
