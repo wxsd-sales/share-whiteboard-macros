@@ -29,7 +29,7 @@ import xapi from 'xapi';
 **********************************************************/
 
 const emailConfig = {
-  destination: 'vvazquez@cisco.com', // Change this value to the email address you want the whiteboard to be sent to
+  destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to
   body: 'Here you have your white board', // Email body text of your choice, this is an example
   subject: 'New white board', // Email subject of your choice, this is an example
   attachmentFilename: 'myfile-companion-mode' // File name of your choice, this is an example
@@ -41,9 +41,9 @@ const buttonConfig = {
 };
 
 const remoteDeviceconfig = {
-  deviceIP: '192.168.100.150',
-  userName: 'victor',
-  password: 'cisco,123',
+  deviceIP: 'X.X.X.X', // Change this value to the Cisco Board IP adddress
+  userName: 'user', // Change this value to the Board user with Admin rights 
+  password: 'password', // Board user with Admin rights password
 };
 
 const credentials = btoa(`${remoteDeviceconfig.userName}:${remoteDeviceconfig.password}`);
