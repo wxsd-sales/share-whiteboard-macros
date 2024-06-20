@@ -208,6 +208,9 @@ async function getWidgetState(widgetId) {
   return widget.Value
 }
 
+/*****************************************************************
+ * Connects to the remote device to read the board URl
+ *****************************************************************/
 
 async function getBoardUrl() {
   let boardUrl = '';
