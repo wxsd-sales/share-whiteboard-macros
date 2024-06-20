@@ -24,6 +24,10 @@
 
 import xapi from 'xapi';
 
+/*********************************************************
+ * Configure the settings below
+**********************************************************/
+
 let emailConfig = {
   destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to by default
   body: 'Here you have your white board', // Email body text of your choice, this is an example
@@ -38,6 +42,10 @@ const config = {
   },
   panelId: 'sharewb'
 }
+
+/*********************************************************
+ * Main functions and event subscriptions
+ **********************************************************/
 
 createPanel();
 // listening for first button click
@@ -112,6 +120,10 @@ function processInput(event) {
   sendWhiteBoardUrl(event.Text); // Instruct Board to send URL
 }
 
+/*****************************************************************
+ * Returns Meeting participants inside the Org
+ *****************************************************************/
+
 async function getParticipants() {
   const results = await xapi.Command.Conference.ParticipantList.Search()
   const self = results.Participant.find(participant => participant.ParticipantId == results.ParticipantSelf)
@@ -121,22 +133,9 @@ async function getParticipants() {
   return peopleInMyOrg;
 }
 
-async function toggleParticipantButton(uuid) {
-  const panelId = config.panelId;
-  const widgetId = panelId + '-participant-' + uuid;
-  const widgetState = await getWidgetState(widgetId)
-  if (widgetState != 'active') {
-    xapi.Command.UserInterface.Extensions.Widget.SetValue({ Value: 'active', WidgetId: widgetId });
-  } else {
-    xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widgetId });
-  }
-}
-
-async function getWidgetState(widgetId) {
-  const widgets = await xapi.Status.UserInterface.Extensions.Widget.get();
-  const widget = widgets.find(widget => widget.WidgetId == widgetId)
-  return widget.Value
-}
+/*****************************************************************
+ * Returns selected participants
+ *****************************************************************/
 
 async function getSelectedParticipants() {
   const widgetIdStart = config.panelId + '-participant-';
@@ -146,6 +145,10 @@ async function getSelectedParticipants() {
   if (!filtered) return
   return filtered.map(widget => widget.WidgetId.replace(widgetIdStart, ''))
 }
+
+/*****************************************************************
+ * Functions to get selected participants emails
+ *****************************************************************/
 
 async function getParticipantEmail(name, uuid) {
   const result = await xapi.Command.Phonebook.Search({ PhonebookType: 'Corporate', SearchString: name });
@@ -172,6 +175,28 @@ async function getParticipantsEmail(participants) {
   }
   return emails
 }
+
+/*****************************************************************
+ * Functions to handle participants selection
+ *****************************************************************/
+
+async function toggleParticipantButton(uuid) {
+  const panelId = config.panelId;
+  const widgetId = panelId + '-participant-' + uuid;
+  const widgetState = await getWidgetState(widgetId)
+  if (widgetState != 'active') {
+    xapi.Command.UserInterface.Extensions.Widget.SetValue({ Value: 'active', WidgetId: widgetId });
+  } else {
+    xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widgetId });
+  }
+}
+
+async function getWidgetState(widgetId) {
+  const widgets = await xapi.Status.UserInterface.Extensions.Widget.get();
+  const widget = widgets.find(widget => widget.WidgetId == widgetId)
+  return widget.Value
+}
+
 
 async function getBoardUrl() {
   let boardUrl = '';
@@ -217,34 +242,6 @@ async function sendWhiteBoardUrl(destination) {
     Recipients: destination, 
     Subject: emailConfig.subject });
   alert({ message: `Whiteboard has been sent to ${destination}` })
-
-  /* not used in standalone mode
-    const xml = ` <Command>
-                  <Whiteboard>
-                    <Email>
-                      <Send>
-                        <Subject>${emailConfig.subject}</Subject>
-                        <Body>${emailConfig.body}</Body>
-                        <Recipients>${destination}</Recipients>
-                        <BoardUrls>${boardUrl}</BoardUrls>
-                        <AttachmentFilenames>${emailConfig.attachmentFilename}.pdf</AttachmentFilenames>
-                      </Send>
-                    </Email>
-                  </Whiteboard>
-                </Command>`;
-
-  xapi.Command.HttpClient.Post({
-    AllowInsecureHTTPS: 'True',
-    Header: ['Authorization: Basic ' + credentials],
-    Url: `https://${remoteDeviceconfig.deviceIP}/putxml`
-    }, xml)
-  .catch(error => console.log('Error sending whiteboard', error))
-  .then(reponse => {
-          console.log('putxml response status code:', reponse.StatusCode);
-          alert({ message: `Whiteboard has been sent to ${destination}` });
-        })
-  */
-
 }
 
 // This function creates the hidden main panel
