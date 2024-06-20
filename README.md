@@ -9,34 +9,34 @@ Cisco Webex Board, and Desk series, offer the possibility to share whiteboards b
 
   Send your Desk/Board Whiteboards with a simple click
 
-<img width="1628" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/28d73258-2a3f-41ed-a8cc-498b876b915b">
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/28d73258-2a3f-41ed-a8cc-498b876b915b">
 
 - Send Whiteboard from your Navigator:
 
   Use your Navigator to send Whiteboards that are open on your paired Board or Desk Series Devices
 
-  <img width="1161" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/03a6edac-27dc-44f9-99c9-cf9fefe63e30">
+  <img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/03a6edac-27dc-44f9-99c9-cf9fefe63e30">
 
 - Send Whiteboard in Companion Mode
 
   Similar the above feature, we can also send Whiteboards opened on a Companion Board Device from the main Room Series Device and its Navigator
 
-<img width="1334" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/864217fc-301a-45b0-85ba-582047515914">
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/864217fc-301a-45b0-85ba-582047515914">
 
 ### Using the macro
 The macro automatically creates a share button, which will be visible only in the call controls. This is because the API used to share the whiteboard (_xapi.Command.Whiteboard.Email.Send_) is only available when a whiteboard is shared during a call/meeting.
 
 The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
 
-<img width="1214" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/5353d5b1-621a-401a-9b6a-3a6756b22190">
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/5353d5b1-621a-401a-9b6a-3a6756b22190">
 
 Another message indicating that the macro is checking if there is any shared Whiteboard in the Webex board (only for Companion mode):
 
-<img width="1168" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/4ddfd004-89a5-4199-b399-0061bc69f289">
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/4ddfd004-89a5-4199-b399-0061bc69f289">
 
 and, finally, one message confirming that the whiteboard was sent:
 
-<img width="1111" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/627101ac-f8d1-434a-bd02-c91d65c3fd8e">
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/627101ac-f8d1-434a-bd02-c91d65c3fd8e">
 
 
 ## Setup
