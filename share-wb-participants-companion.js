@@ -27,6 +27,10 @@
 
 import xapi from 'xapi';
 
+/*********************************************************
+ * Configure the settings below
+**********************************************************/
+
 let emailConfig = {
   destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to by default
   body: 'Here you have your white board', // Email body text of your choice, this is an example
@@ -49,6 +53,10 @@ const remoteDeviceconfig = {
 };
 
 const credentials = btoa(`${remoteDeviceconfig.userName}:${remoteDeviceconfig.password}`);
+
+/*********************************************************
+ * Main functions and event subscriptions
+ **********************************************************/
 
 createPanel();
 // listening for first button click
@@ -123,6 +131,10 @@ function processInput(event) {
   sendWhiteBoardUrl(event.Text); // Instruct Board to send URL
 }
 
+/*****************************************************************
+ * Returns Meeting participants inside the Org
+ *****************************************************************/
+
 async function getParticipants() {
   const results = await xapi.Command.Conference.ParticipantList.Search()
   const self = results.Participant.find(participant => participant.ParticipantId == results.ParticipantSelf)
@@ -131,6 +143,53 @@ async function getParticipants() {
   console.log('People in my org found', peopleInMyOrg);
   return peopleInMyOrg;
 }
+
+/*****************************************************************
+ * Returns selected participants
+ *****************************************************************/
+
+async function getSelectedParticipants() {
+  const widgetIdStart = config.panelId + '-participant-';
+  const widgets = await xapi.Status.UserInterface.Extensions.Widget.get();
+  console.log(widgets)
+  const filtered = widgets.filter(widget => widget.WidgetId.startsWith(widgetIdStart) && widget.Value == 'active')
+  if (!filtered) return
+  return filtered.map(widget => widget.WidgetId.replace(widgetIdStart, ''))
+}
+
+/*****************************************************************
+ * Functions to get selected participants emails
+ *****************************************************************/
+
+async function getParticipantsEmail(participants) {
+  let emails = [];
+  for (let i = 0; i < participants.length; i++) {
+    console.log('Searching for name:', participants[i].DisplayName, ' uuid:', participants[i].SparkUserId)
+    const result = await getParticipantEmail(participants[i].DisplayName, participants[i].SparkUserId)
+    emails.push(result)
+  }
+  console.log ('Number of emails:', emails.length)
+  if (emails.length > 20) {
+    console.log ('More than 20 emails');
+    return
+  }
+  return emails
+}
+
+async function getParticipantEmail(name, uuid) {
+  const result = await xapi.Command.Phonebook.Search({ PhonebookType: 'Corporate', SearchString: name });
+
+  const contacts = result?.Contact;
+  // console.log ('contacts', contacts);
+  if (!contacts) return
+  const person = contacts.find(contact => contact.ContactId == uuid)
+  console.log('person', person);
+  return person?.Email
+}
+
+/*****************************************************************
+ * Functions to handle participants selection
+ *****************************************************************/
 
 async function toggleParticipantButton(uuid) {
   const panelId = config.panelId;
@@ -149,40 +208,6 @@ async function getWidgetState(widgetId) {
   return widget.Value
 }
 
-async function getSelectedParticipants() {
-  const widgetIdStart = config.panelId + '-participant-';
-  const widgets = await xapi.Status.UserInterface.Extensions.Widget.get();
-  console.log(widgets)
-  const filtered = widgets.filter(widget => widget.WidgetId.startsWith(widgetIdStart) && widget.Value == 'active')
-  if (!filtered) return
-  return filtered.map(widget => widget.WidgetId.replace(widgetIdStart, ''))
-}
-
-async function getParticipantEmail(name, uuid) {
-  const result = await xapi.Command.Phonebook.Search({ PhonebookType: 'Corporate', SearchString: name });
-
-  const contacts = result?.Contact;
-  // console.log ('contacts', contacts);
-  if (!contacts) return
-  const person = contacts.find(contact => contact.ContactId == uuid)
-  console.log('person', person);
-  return person?.Email
-}
-
-async function getParticipantsEmail(participants) {
-  let emails = [];
-  for (let i = 0; i < participants.length; i++) {
-    console.log('Searching for name:', participants[i].DisplayName, ' uuid:', participants[i].SparkUserId)
-    const result = await getParticipantEmail(participants[i].DisplayName, participants[i].SparkUserId)
-    emails.push(result)
-  }
-  console.log ('Number of emails:', emails.length)
-  if (emails.length > 20) {
-    console.log ('More than 20 emails');
-    return
-  }
-  return emails
-}
 
 async function getBoardUrl() {
   let boardUrl = '';
@@ -204,7 +229,7 @@ async function getBoardUrl() {
 }
 
 /*********************************************************
- * Instructs the Companion Device to send the Whitebard
+ * Instructs the Companion Device to send the Whiteboard
  * to configured email destination
  **********************************************************/
 
