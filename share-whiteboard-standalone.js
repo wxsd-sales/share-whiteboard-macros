@@ -49,14 +49,11 @@ xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
 // Create UI Extension Panel
 createPanel();
 
-
 /*********************************************************
  * Instructs the Companion Device to send the Whitebard
  * to configured email destination
  **********************************************************/
 function sendWhiteBoardUrl(url) {
-
-
   xapi.Command.Whiteboard.Email.Send({
     BoardUrls: url,
     Body: emailConfig.body,
@@ -125,7 +122,6 @@ function alert(args) {
   }
 }
 
-
 /*********************************************************
  * Create the UI Extension Panel and Save it to the Device
  **********************************************************/
@@ -153,7 +149,6 @@ async function createPanel() {
   )
     .catch(e => console.log('Error saving panel: ' + e.message))
 }
-
 
 /*********************************************************
  * Gets the current Panel Order if exiting Macro panel is present
