@@ -75,7 +75,7 @@ A new version of this macro is ready, with a new option allowing the user to sen
 
 ### Installation Steps:
 
-1. Download the `share-wb-participants.js` file for Companion mode (or the `share-wb-participants-standalone.js` for standalone devices ), and upload it to the main video device macro editor via the web interface
+1. Download the `share-wb-participants-companion.js` file for Companion mode (or the `share-wb-participants-standalone.js` for standalone devices ), and upload it to the main video device macro editor via the web interface
 2. Configure the macro by changing the initial values, there are comments explaining each one.
 3. Enable the macro on the editor.
 
