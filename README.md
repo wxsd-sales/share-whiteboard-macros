@@ -36,7 +36,8 @@ Another message indicating that the macro is checking if there is any shared Whi
 
 and, finally, one message confirming that the whiteboard was sent:
 
-<img width="1152" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/678957f6-aeed-4bc2-8c1e-877645fc5055">
+<img width="1111" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/627101ac-f8d1-434a-bd02-c91d65c3fd8e">
+
 
 ## Setup
 ### Prerequisites & Dependencies:
