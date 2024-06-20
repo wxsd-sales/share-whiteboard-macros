@@ -73,6 +73,8 @@ A new version of this macro is ready, with a new option allowing the user to sen
 
 <img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/ba131f76-0dd8-4aaf-a258-5bb9b2c13185">
 
+Only participants in the same organization will be shown
+
 ### Installation Steps:
 
 1. Download the `share-wb-participants-companion.js` file for Companion mode (or the `share-wb-participants-standalone.js` for standalone devices ), and upload it to the main video device macro editor via the web interface
