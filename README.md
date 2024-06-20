@@ -28,10 +28,15 @@ The macro automatically creates a share button, which will be visible only in th
 
 The device will send a warning message if the button to share the whiteboard is pressed before the whiteboard is shared:
 
-<img width="1590" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/f8fd1767-daea-4da5-9dc9-d34386024c2b">
+<img width="1214" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/5353d5b1-621a-401a-9b6a-3a6756b22190">
 
-and another message confirming that the whiteboard was sent
-<img width="1609" alt="image" src="https://github.com/wxsd-sales/share-whiteboard/assets/22101144/6ce59940-cd9a-4baf-80c1-9892f13b1b39">
+Another message indicating that the macro is checking if there is any shared Whiteboard in the Webex board (only for Companion mode):
+
+<img width="1168" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/4ddfd004-89a5-4199-b399-0061bc69f289">
+
+and, finally, one message confirming that the whiteboard was sent:
+
+<img width="1152" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/678957f6-aeed-4bc2-8c1e-877645fc5055">
 
 ## Setup
 ### Prerequisites & Dependencies:
