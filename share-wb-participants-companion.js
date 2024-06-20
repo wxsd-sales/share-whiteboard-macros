@@ -283,8 +283,10 @@ async function sendWhiteBoardUrl(destination) {
 
 }
 
+/*********************************************************
+ * Create the Share Whiteboard button
+**********************************************************/
 
-// This function creates the hidden main panel
 async function createPanel(people) {
 
   console.log('Creating Panel')
@@ -309,6 +311,10 @@ async function createPanel(people) {
   await xapi.Command.UserInterface.Extensions.Panel.Save({ PanelId: panelId }, panel)
     .catch(error => console.log(`Unable to save panel [${panelId}]- `, error.message))
 }
+
+/*********************************************************
+ * Create the main page
+**********************************************************/
 
 function createMainPage() {
   const panelId = config.panelId;
@@ -345,6 +351,10 @@ function createMainPage() {
       <Options>hideRowNames=1</Options>
     </Page>`
 }
+
+/*********************************************************
+ * Create the list of participants Panel
+**********************************************************/
 
 function createParticipantsPage(people) {
   const rows = people.map(person => {
