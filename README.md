@@ -1,4 +1,4 @@
-# Share Whiteboard Macro
+<img width="1102" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/7d6ee947-33da-4936-b861-c29b2378a22b"># Share Whiteboard Macro
 Cisco Webex Board, and Desk series, offer the possibility to share whiteboards by sending them via email or saving them into Webex spaces. To do this, users need to be standing in front of the board and perform several clicks on the screen. This Webex Device macro allows users to share whiteboards via email simply by clicking on a button on the navigator/touch screen. This is especially useful in Companion mode environments, where the Navigator is connected to the main video device.
 
 ## Overview
@@ -66,13 +66,16 @@ For standalone Boards, and Desks:
 
 ## New version: selecting participants
 ### Overview
-A new version of this macro is ready, allowing the user to send the Whiteboard to a default email address or choose among from the list of meeting participants
+A new version of this macro is ready, with a new option allowing the user to send the Whiteboard to selected meeting participants
 
-** ADD screenshot **
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/fcb5a5ec-62d1-4d62-8526-6e16626e00a7">
+
+
+<img width="1300" alt="image" src="https://github.com/wxsd-sales/share-whiteboard-macro/assets/22101144/ba131f76-0dd8-4aaf-a258-5bb9b2c13185">
 
 ### Installation Steps:
 
-1. Download the `new-file-companion` file for Companion mode, or the `new-file-standalone` and upload it to the main video device macro editor via the web interface
+1. Download the `share-wb-participants.js` file for Companion mode (or the `share-wb-participants-standalone.js` for standalone devices ), and upload it to the main video device macro editor via the web interface
 2. Configure the macro by changing the initial values, there are comments explaining each one.
 3. Enable the macro on the editor.
 
