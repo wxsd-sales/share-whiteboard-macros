@@ -50,8 +50,8 @@ xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
 createPanel();
 
 /*********************************************************
- * Instructs the Companion Device to send the Whitebard
- * to configured email destination
+ * Instructs the device to send the Whitebard to configured
+ * email destination
  **********************************************************/
 function sendWhiteBoardUrl(url) {
   xapi.Command.Whiteboard.Email.Send({
@@ -151,7 +151,7 @@ async function createPanel() {
 }
 
 /*********************************************************
- * Gets the current Panel Order if exiting Macro panel is present
+ * Gets the current Panel Order if existing Macro panel is present
  * to preserve the order in relation to other custom UI Extensions
  **********************************************************/
 async function panelOrder(panelId) {
