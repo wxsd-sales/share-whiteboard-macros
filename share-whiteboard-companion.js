@@ -11,7 +11,7 @@
 * This Webex Device macro allows users to share whiteboards
 * via email simply by clicking on a button on the Navigator. 
 *
-* This specific version of the macro has been designed for 
+* This specific version of this macro has been designed for 
 * Companion mode use case. This macro should be installed and 
 * enabled on the main Room Device. The macro then lets a user
 * share a Whiteboard which may be open on the Companion Board
@@ -29,7 +29,7 @@ import xapi from 'xapi';
 **********************************************************/
 
 const emailConfig = {
-  destination: 'vvazquez@cisco.com', // Change this value to the email address you want the whiteboard to be sent to
+  destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to
   body: 'Here you have your white board', // Email body text of your choice, this is an example
   subject: 'New white board', // Email subject of your choice, this is an example
   attachmentFilename: 'myfile-companion-mode' // File name of your choice, this is an example
@@ -41,9 +41,9 @@ const buttonConfig = {
 };
 
 const remoteDeviceconfig = {
-  deviceIP: '192.168.100.150',
-  userName: 'victor',
-  password: 'cisco,123',
+  deviceIP: 'X.X.X.X', // Change this value to the Cisco Board IP adddress
+  userName: 'user', // Change this value to the Board user with Admin rights 
+  password: 'password', // Board user with Admin rights password
 };
 
 const credentials = btoa(`${remoteDeviceconfig.userName}:${remoteDeviceconfig.password}`);
@@ -59,7 +59,6 @@ xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
 
 // Create UI Extension Panel
 createPanel();
-
 
 /*********************************************************
  * Instructs the Companion Device to send the Whitebard
@@ -91,7 +90,6 @@ function sendWhiteBoardUrl(url) {
       alert({ message: `Whiteboard has been sent to ${emailConfig.destination}` });
     })
 }
-
 
 /*********************************************************
  * Listen for Panel Click Events and check Whiteboard xStatus
@@ -135,7 +133,7 @@ async function shareWhiteBoard(event) {
   }
 }
 
-/**
+/*
  * Alert Function for Logging & Displaying Notification on Device
  * @property {object}  args               - Alert details
  * @property {string}  args.message       - Message Text
@@ -168,7 +166,6 @@ function alert(args) {
   }
 }
 
-
 /*********************************************************
  * Create the UI Extension Panel and Save it to the Device
  **********************************************************/
@@ -196,7 +193,6 @@ async function createPanel() {
   )
     .catch(e => console.log('Error saving panel: ' + e.message))
 }
-
 
 /*********************************************************
  * Gets the current Panel Order if exiting Macro panel is present
