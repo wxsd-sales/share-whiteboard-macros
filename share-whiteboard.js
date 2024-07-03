@@ -12,9 +12,7 @@
 * via email simply by clicking on a button on the Navigator. 
 *
 * This specific version of the macro works for Webex Board
-* and Desk series, with or without Navigator.
-* The macro then lets a user share a WhiteBoard usinsg the 
-* touch screen or the Navigator
+* and desk series, with or without a Navigator
 * 
 * Full Readme and source code and license details available here:
 * https://github.com/wxsd-sales/share-whiteboard-macro
@@ -30,7 +28,8 @@ import xapi from 'xapi';
 const emailConfig = {
   destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to
   body: 'Here you have your white board', // Email body text of your choice, this is an example
-  subject: 'New white board' // Email suubject of your choice, this is an example
+  subject: 'New white board', // Email subject of your choice, this is an example
+  attachmentFilename: 'myfile-companion-mode' // File name of your choice, this is an example
 };
 const buttonConfig = {
   name: 'Send whiteboard',
@@ -50,19 +49,17 @@ xapi.Event.UserInterface.Extensions.Panel.Clicked.on(shareWhiteBoard);
 // Create UI Extension Panel
 createPanel();
 
-
 /*********************************************************
  * Instructs the Companion Device to send the Whitebard
  * to configured email destination
  **********************************************************/
 function sendWhiteBoardUrl(url) {
-
-
   xapi.Command.Whiteboard.Email.Send({
     BoardUrls: url,
     Body: emailConfig.body,
     Recipients: emailConfig.destination,
-    Subject: emailConfig.subject })
+    Subject: emailConfig.subject,
+    AttachmentFilenames: emailConfig.attachmentFilename })
     .then(() => {
       alert({ message: `Whiteboard has been sent to ${emailConfig.destination}` })
     })
@@ -125,7 +122,6 @@ function alert(args) {
   }
 }
 
-
 /*********************************************************
  * Create the UI Extension Panel and Save it to the Device
  **********************************************************/
@@ -153,7 +149,6 @@ async function createPanel() {
   )
     .catch(e => console.log('Error saving panel: ' + e.message))
 }
-
 
 /*********************************************************
  * Gets the current Panel Order if exiting Macro panel is present
