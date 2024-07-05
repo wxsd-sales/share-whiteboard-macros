@@ -35,7 +35,7 @@ let emailConfig = {
   destination: 'user@example.com', // Change this value to the email address you want the whiteboard to be sent to by default
   body: 'Here you have your white board', // Email body text of your choice, this is an example
   subject: 'New white board', // Email subject of your choice, this is an example
-  attachmentFilename: 'myfile-companion-mode' // File name of your choice, this is an example
+  attachmentFilename: 'myfile-companion-mode.pdf' // File name of your choice, this is an example
 };
 
 const config = {
