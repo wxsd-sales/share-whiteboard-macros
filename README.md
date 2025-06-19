@@ -85,7 +85,7 @@ Only participants in the same organization will be shown
 *For more demos & PoCs like this, check out our [Webex Labs site](https://collabtoolbox.cisco.com/webex-labs).
 
 ## License
-All contents are licensed under the MIT license. Please see [license](LICENSE) for details.
+All contents are licensed under the MIT license. Please see [license](https://github.com/wxsd-sales/video-cc-widget-lit/blob/main/LICENSE) for details.
 
 ## Disclaimer
 Everything included is for demo and Proof of Concept purposes only. Use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex use cases, but are not Official Cisco Webex Branded demos.
